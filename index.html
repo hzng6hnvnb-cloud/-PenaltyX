@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ضربة جزاء</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- الشاشة الرئيسية -->
+        <section id="homeScreen" class="screen active">
+            <div class="logo">⚽</div>
+            <h1>ضربة جزاء</h1>
+            <p>اختبر مهارتك أمام الحارس</p>
+
+            <div class="glass-card">
+                <label>اسم اللاعب</label>
+                <input id="playerName" type="text" placeholder="اكتب اسمك">
+
+                <button id="startBtn" class="main-btn">
+                    ابدأ المباراة
+                </button>
+            </div>
+        </section>
+
+        <!-- شاشة المباراة -->
+        <section id="gameScreen" class="screen">
+
+            <header class="top-bar">
+                <div>
+                    <span class="small-text">اللاعب</span>
+                    <strong id="playerDisplay">اللاعب</strong>
+                </div>
+
+                <div class="score-box">
+                    <span id="goals">0</span>
+                    <small>/ 5</small>
+                </div>
+
+                <div>
+                    <span class="small-text">الجولة</span>
+                    <strong id="roundDisplay">1</strong>
+                </div>
+            </header>
+
+            <div class="stadium">
+
+                <div class="crowd">
+                    <span>● ● ● ● ● ● ● ● ● ●</span>
+                    <span>● ● ● ● ● ● ● ● ● ●</span>
+                </div>
+
+                <div class="field">
+
+                    <div class="goal">
+                        <div class="net"></div>
+
+                        <div id="keeper" class="keeper">
+                            🧤
+                        </div>
+
+                        <div id="ball" class="ball">
+                            ⚽
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="message" class="game-message">
+                اختر مكان التسديدة
+            </div>
+
+            <div class="controls">
+
+                <div class="direction-title">
+                    اتجاه التسديدة
+                </div>
+
+                <div class="direction-grid">
+                    <button class="direction-btn" data-direction="left">
+                        ↖
+                        <span>يسار</span>
+                    </button>
+
+                    <button class="direction-btn" data-direction="center">
+                        ↑
+                        <span>وسط</span>
+                    </button>
+
+                    <button class="direction-btn" data-direction="right">
+                        ↗
+                        <span>يمين</span>
+                    </button>
+                </div>
+
+                <div class="power-title">
+                    قوة التسديدة
+                </div>
+
+                <input
+                    id="power"
+                    class="power-range"
+                    type="range"
+                    min="1"
+                    max="100"
+                    value="60"
+                >
+
+                <div class="power-value">
+                    <span>القوة</span>
+                    <strong id="powerValue">60%</strong>
+                </div>
+
+                <button id="shootBtn" class="shoot-btn">
+                    ⚡ سدد
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- شاشة النهاية -->
+        <section id="resultScreen" class="screen">
+
+            <div class="result-icon" id="resultIcon">🏆</div>
+
+            <h1 id="resultTitle">انتهت المباراة</h1>
+
+            <div class="final-score">
+                <strong id="finalGoals">0</strong>
+                <span>من 5</span>
+            </div>
+
+            <p id="resultText"></p>
+
+            <div class="stats-card">
+                <div>
+                    <span>الأهداف</span>
+                    <strong id="statGoals">0</strong>
+                </div>
+
+                <div>
+                    <span>التصديات</span>
+                    <strong id="statSaves">0</strong>
+                </div>
+
+                <div>
+                    <span>المحاولات</span>
+                    <strong id="statShots">0</strong>
+                </div>
+            </div>
+
+            <button id="restartBtn" class="main-btn">
+                🔄 العب مرة ثانية
+            </button>
+
+        </section>
+
+    </div>
+
+    <div id="flash"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
