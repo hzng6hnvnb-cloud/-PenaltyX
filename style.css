@@ -1,0 +1,497 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --glass: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.14);
+    --text: #ffffff;
+    --muted: #aeb6c4;
+    --green: #19d46b;
+    --yellow: #ffd43b;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%, #173c2c 0%, transparent 45%),
+        linear-gradient(145deg, #05070b, #0b1119 60%, #050609);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px 18px;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* الرئيسية */
+
+#homeScreen {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    width: 95px;
+    height: 95px;
+    display: grid;
+    place-items: center;
+    font-size: 55px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    backdrop-filter: blur(20px);
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+#homeScreen > p {
+    color: var(--muted);
+    margin-top: 8px;
+    margin-bottom: 30px;
+}
+
+.glass-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
+    border-radius: 28px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+}
+
+.glass-card label {
+    display: block;
+    text-align: right;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.glass-card input {
+    width: 100%;
+    padding: 17px;
+    border-radius: 17px;
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.25);
+    color: white;
+    outline: none;
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.glass-card input:focus {
+    border-color: var(--green);
+}
+
+/* الأزرار */
+
+.main-btn,
+.shoot-btn {
+    width: 100%;
+    padding: 17px;
+    border-radius: 18px;
+    color: white;
+    font-weight: 800;
+    font-size: 17px;
+    background: linear-gradient(135deg, #19d46b, #0fa957);
+    box-shadow: 0 12px 30px rgba(25,212,107,0.22);
+    transition: 0.2s;
+}
+
+.main-btn:active,
+.shoot-btn:active {
+    transform: scale(0.97);
+}
+
+/* أعلى المباراة */
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 18px;
+}
+
+.top-bar > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.small-text {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.top-bar strong {
+    font-size: 16px;
+}
+
+.score-box {
+    text-align: center;
+}
+
+.score-box span {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.score-box small {
+    color: var(--muted);
+}
+
+/* الملعب */
+
+.stadium {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #081b12;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+}
+
+.crowd {
+    height: 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 7px;
+    color: rgba(255,255,255,0.35);
+    background: linear-gradient(#151b24, #0c1016);
+}
+
+.field {
+    height: 310px;
+    position: relative;
+    overflow: hidden;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #0d6b37 0px,
+            #0d6b37 70px,
+            #0b6233 70px,
+            #0b6233 140px
+        );
+}
+
+.field::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            transparent 49%,
+            rgba(255,255,255,0.08) 50%,
+            transparent 51%
+        );
+    pointer-events: none;
+}
+
+.goal {
+    position: absolute;
+    width: 78%;
+    height: 220px;
+    left: 11%;
+    top: 35px;
+    border: 5px solid white;
+    border-bottom: 0;
+    perspective: 600px;
+}
+
+.net {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    background-image:
+        linear-gradient(90deg, white 1px, transparent 1px),
+        linear-gradient(white 1px, transparent 1px);
+    background-size: 25px 25px;
+}
+
+.keeper {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    font-size: 58px;
+    z-index: 5;
+    transition: all 0.45s cubic-bezier(.2,.8,.2,1);
+}
+
+.ball {
+    position: absolute;
+    left: 50%;
+    bottom: -55px;
+    transform: translateX(-50%);
+    font-size: 38px;
+    z-index: 8;
+    transition: all 0.65s cubic-bezier(.2,.8,.2,1);
+}
+
+/* الرسالة */
+
+.game-message {
+    max-width: 600px;
+    width: 100%;
+    margin: 17px auto;
+    text-align: center;
+    font-weight: 700;
+    min-height: 25px;
+}
+
+/* التحكم */
+
+.controls {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.direction-title,
+.power-title {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+
+.direction-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+.direction-btn {
+    min-height: 65px;
+    border-radius: 18px;
+    color: white;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    transition: 0.2s;
+}
+
+.direction-btn span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.direction-btn.selected {
+    background: rgba(25,212,107,0.18);
+    border-color: var(--green);
+    transform: translateY(-2px);
+}
+
+.power-title {
+    margin-top: 17px;
+}
+
+.power-range {
+    width: 100%;
+    accent-color: var(--green);
+}
+
+.power-value {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0 14px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.power-value strong {
+    color: white;
+}
+
+.shoot-btn {
+    background: linear-gradient(135deg, #ffd43b, #f19d13);
+    color: #151515;
+    margin-bottom: 10px;
+}
+
+/* النهاية */
+
+#resultScreen {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.result-icon {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+#resultScreen h1 {
+    font-size: 32px;
+}
+
+.final-score {
+    margin: 25px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.final-score strong {
+    font-size: 70px;
+}
+
+.final-score span {
+    color: var(--muted);
+}
+
+#resultText {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.stats-card {
+    width: 100%;
+    max-width: 420px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 22px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+}
+
+.stats-card div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stats-card span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.stats-card strong {
+    font-size: 24px;
+}
+
+/* الوميض */
+
+#flash {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: white;
+    z-index: 100;
+}
+
+#flash.show {
+    animation: flash 0.35s ease;
+}
+
+@keyframes flash {
+    0% { opacity: 0; }
+    30% { opacity: 0.15; }
+    100% { opacity: 0; }
+}
+
+/* الحركات */
+
+.keeper.left {
+    left: 12%;
+    transform: translateX(-50%) rotate(-20deg);
+}
+
+.keeper.right {
+    left: 88%;
+    transform: translateX(-50%) rotate(20deg);
+}
+
+.keeper.center {
+    left: 50%;
+    transform: translateX(-50%) scale(1.12);
+}
+
+.ball.left {
+    left: 18%;
+    bottom: 145px;
+    transform: translateX(-50%) rotate(360deg) scale(1.15);
+}
+
+.ball.center {
+    left: 50%;
+    bottom: 175px;
+    transform: translateX(-50%) rotate(360deg) scale(1.15);
+}
+
+.ball.right {
+    left: 82%;
+    bottom: 145px;
+    transform: translateX(-50%) rotate(360deg) scale(1.15);
+}
+
+@media (max-width: 420px) {
+    .field {
+        height: 275px;
+    }
+
+    .goal {
+        height: 195px;
+    }
+
+    .keeper {
+        font-size: 50px;
+    }
+
+    .ball {
+        font-size: 34px;
+    }
+}
